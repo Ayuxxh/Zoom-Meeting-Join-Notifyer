@@ -74,13 +74,25 @@ def Schedule():
 
     #Password For Friday
     if today_day == "Friday": 
-        if current_hour == '18':
-            token = '7251288343'
-            password = "12345678"
+        if current_hour == '9':
+            token = '8289494407'
+            password = "253QIW"
             return token, password
 
-        if current_hour == '10':
-            token = '3r79767378'
-            password = "dreamland" 
+        if current_hour == '17':
+            token = '9155921702'
+            password =  "sst01"
+            return token, password
+
+    #Password For Friday
+    if today_day == "Saturday": 
+        if current_hour == '9':
+            token = '8289494407'
+            password = "253QIW"
+            return token, password
+
+        if current_hour == '17':
+            token = '9155921702'
+            password =  "sst01"
             return token, password
 

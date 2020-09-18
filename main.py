@@ -29,12 +29,12 @@ while True:
     current_hour = zoom_meeting.get_time()
 
     #Cheaking Time 
-    if current_hour == '18':
+    if current_hour == '21':
         print("Listening when meeting starts")
         #Getting Date 
         today_day = zoom_meeting.get_date()  
         # Compareing Dates
-        if today_day == 'Saturday' or today_day == 'Sunday':
+        if today_day == 'Sunday':
             print("*"  * 50)
             print("Umm....")
             print("*Gulp*")
@@ -43,19 +43,19 @@ while True:
             print("Exiting...")
             sys.exit()
 
-
-        try:
+        token = schedule.Schedule()
+        print("Cheaking Time", token[0], token[1])
+        while token == None:
+            print("Cheaking Time", token[0], token[1])
             #collecting credentials
-            token, password = schedule.Schedule()
-        except:
-            print("Join Metting Credential Not Found!")
-            print("For Time: "+ current_hour)
-            print("For Day: " + today_day)
+            token = schedule.Schedule()
+            if token != None:
+                break
 
         #opening zoom 
         zoom_meeting.open_zoom()
-
-
+        time.sleep(30) 
+   
         #joining meeting 
         zoom_meeting.join_meeting()
         
@@ -63,11 +63,11 @@ while True:
         time.sleep(15)
 
         # entering into meeting 
-        zoom_meeting.logging(token,password)
+        zoom_meeting.logging(token[0], token[1])
 
         time.sleep(15)
 
-        zoom_meeting.notify_by_ring(token, password)
+        zoom_meeting.notify_by_ring(token[0], token[1])
         alram =input("Press Enter or type 'q' To Stop Alram ")
         if  alram == '' or alram == 'q':
             zoom_meeting.stop_ring_byUser()
@@ -77,7 +77,7 @@ while True:
         time.sleep(60)
     else:
         # Cheaking IF exceeded The Time Limit
-        if current_hour == '1':
+        if current_hour == '18':
             print("*"  * 50)
             print("Looks Like There Aren't Any Class Today")
             print("*"  *  50)
@@ -85,5 +85,4 @@ while True:
         
         #Sleeping for 5 minutes
         time.sleep(300)
-
-
+    
